@@ -14,25 +14,39 @@ function log(obj) {
 const playerStats = new Stats(2, 2)
 const dagger = new Weapon("dagger", 1, "1d4", 1)
 const player = new Character(actions, playerStats, dagger, 10)
-const scene = new Scene([player], [])
 
 const enemyStats = new Stats(1, 1)
 const enemy = new Character([], enemyStats, null, 10)
 
+const scene = new Scene([player], [enemy])
+
 player.setTarget(enemy)
 
 function doAction(scene, action, self) {
-    if (eval(action.condition)) {
+    if (scene.inits[self] >= action.cost && eval(action.condition)) {
         console.log("action done");
+        scene.inits[self] -= action.cost
         eval(action.effect)
+
     }
     else {
         console.log("action not done");
     }
 }
 
-doAction(scene, player.actions.gain_initiative, player)
-doAction(scene, player.actions.melee_attack, player)
+log(scene)
 
-log(player)
-log(enemy)
+doAction(scene, player.actions.gain_initiative, player)
+log(scene.inits)
+
+doAction(scene, player.actions.melee_attack, player)
+log(scene.inits)
+log(enemy.health)
+
+doAction(scene, player.actions.melee_attack, player)
+log(scene.inits)
+log(enemy.health)
+
+doAction(scene, player.actions.melee_attack, player)
+log(scene.inits)
+log(enemy.health)
