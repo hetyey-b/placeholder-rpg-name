@@ -31,3 +31,11 @@
     * If it is your turn
     * If the trigger condition is fulfilled
     * Either way, it costs 1 Action point
+
+# Spell basics
+* There are 4 elements: fire, water, earth, wind
+* Players need to use a component of one of the elements, and add it to a spell as an action
+* Whenever adding an element, they can also cast it
+* If they take damage, while they have a spell "in progress", they have to make some sort of concentration check, or the spell misfires
+* IDEA: the misfire damage is still based on how many spell components are added, so the bigger your spell, the more it hurts, if it goes wrong
+    * This probably means a stronger then linear progression in relation to # of components, with some sort of a cap on component #
