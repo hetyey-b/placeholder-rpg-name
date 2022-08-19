@@ -12,12 +12,22 @@
 
 ## Combat basics
 * Combat is made of rounds
-
-## Possible actions
-* Move 6 squares - costs 3 points
-* Attack - costs 3 points
-* Charge - move 3 squares + attack - costs 6 points
-
-## Assits/Interrupts
-* Whenever an Attack or Charge action is taken within range, can spend 3 action to Assist or Interrupt it
-* Assits/Interrupts should be handled as skill checks with different DCs, adding/reducing damage on a success
+* Initiative is something like 4 + 1d4
+* The creature with the highest initiative acts
+* When it's your turn:
+    * Move some for free
+    * Free action
+    * Spend one action point on something
+        * Attack
+        * Add a component to spells (see later)
+* For possible actions, we should use an action card system:
+    * Melee Weapon Attack   - 1 Action point    - Trigger: creature leaves your space
+    * Ranged Weapon Attack  - 1 Action point    - Trigger: none
+    * Mage Slayer           - 1 Action point    - Trigger: creature in range adds a component to a spell    - make an attack against that creature
+    * Magick                - 1 Action point    - Trigger: none                                             - Add one component to current spell, and - optionally - cast it
+    * Intercept             - 1 Action point    - Trigger: a weapon attack is made by a creature in range   - Reduce dmg by some math
+    * Assist attack         - 1 Action point    - Trigger: a weapon attack is made by a creature in range   - Increase dmg by some math
+* Each action card can be cast:
+    * If it is your turn
+    * If the trigger condition is fulfilled
+    * Either way, it costs 1 Action point
