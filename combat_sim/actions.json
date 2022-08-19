@@ -1,0 +1,16 @@
+{
+    "gain_initiative": {
+        "name": "gain_initiative",
+        "pre": "true",
+        "cost": "0",
+        "condition": "scene.inits[self] <= 0",
+        "effect": "scene.inits[self] = D('1d8') + 4"
+    },
+    "melee_attack": {
+        "name": "melee_attack",
+        "pre": "scene.inits[self] > 0",
+        "cost": "1",
+        "condition": "true",
+        "effect": "self.target?.changeHealth(-(D(self.weapon?.dice) + self.weapon?.mod + self.stats.str))"
+    }
+}
