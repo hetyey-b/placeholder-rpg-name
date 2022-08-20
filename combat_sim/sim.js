@@ -20,17 +20,16 @@ const enemy = new Character("Enemy", actions, enemyStats, null, 10)
 
 const scene = new Scene([player], [enemy])
 
-player.setTarget(enemy)
 
 function getPossibleActions(scene, self) {
     const scope = {}
     return Object.values(self.actions).filter((v, i, a) => eval(v.condition))
 }
 
-function doAction(scene, action, self) {
+function doAction(scene, self, action) {
     const scope = {}
     if (eval(action.condition)) {
-        scene.inits[self] -= action.cost
+        scene.inits[self] -= eval(action.cost)
         for (const effect of action.effects) {
             eval(effect)
         }
@@ -44,11 +43,17 @@ function doAction(scene, action, self) {
 log(scene)
 // log(getPossibleActions(scene, player))
 
-doAction(scene, player.actions.gain_initiative, player)
+doAction(scene, player, player.actions.gain_initiative)
 // log(getPossibleActions(scene, player))
 
-doAction(scene, player.actions.melee_attack, player)
+player.setTarget(enemy)
 
-doAction(scene, player.actions.melee_attack, player)
+enemy.setTarget(player)
+doAction(scene, enemy, enemy.actions.hug)
 
-doAction(scene, player.actions.melee_attack, player)
+doAction(scene, player, player.actions.melee_attack)
+
+doAction(scene, player, player.actions.melee_attack)
+
+doAction(scene, player, player.actions.melee_attack)
+

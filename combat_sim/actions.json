@@ -21,5 +21,16 @@
             "console.log(self.name + ' AP remaining: ' + scene.inits[self])",
             "self.target?.changeHealth(scope['damage'])"
         ]
+    },
+    "hug": {
+        "name": "hug",
+        "cost": "0",
+        "condition": "true",
+        "effects": [
+            "console.log(self.name + ' made ' + self.target?.name + ' happy with a warm hug!')",
+            "scope['heal'] = D('1d4')",
+            "self.target?.changeHealth(scope['heal'])",
+            "console.log(self.target?.name + ' health increased to ' + self.target?.health)"
+        ]
     }
 }
