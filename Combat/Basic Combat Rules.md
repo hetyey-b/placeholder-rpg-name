@@ -39,3 +39,23 @@
 * If they take damage, while they have a spell "in progress", they have to make some sort of concentration check, or the spell misfires
 * IDEA: the misfire damage is still based on how many spell components are added, so the bigger your spell, the more it hurts, if it goes wrong
     * This probably means a stronger then linear progression in relation to # of components, with some sort of a cap on component #
+
+# Hitting and damage
+* Areas have 2 states: wounded and disabled
+* Areas are:
+    * 1 - left leg  - w: movement debuff            - can't use limb
+    * 2 - right leg - w: movement debuff            - can't use limb
+    * 3 - left arm  - w: attack debuff              - can't use limb
+    * 4 - right arm - w: attack debuff              - can't use limb
+    * 5 - chest     - w: physical skill debuff      - unconscious and bleeding out
+    * 6 - head      - w: mental/social skill debuff - knocked out
+* Attack resolution
+    * Roll to hit vs some sort of dodge/parry score
+    * (some sort of system for called shots?)
+    * At the same time roll 1d6 for location (if not called shot)
+    * Some roll for damage vs armor
+    * On success, wound
+    * Some special weapons, and crits can deal 2 wounds
+    * Characters have a maximum wound score before being unconscious
+        * max 1 wound for minions
+        * fewer max wounds for glass cannons
