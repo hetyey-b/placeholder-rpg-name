@@ -13,40 +13,47 @@ function log(obj) {
 
 const playerStats = new Stats(2, 2)
 const dagger = new Weapon("dagger", 1, "1d4", 1)
-const player = new Character(actions, playerStats, dagger, 10)
+const player = new Character("Player", actions, playerStats, dagger, 10)
 
 const enemyStats = new Stats(1, 1)
-const enemy = new Character([], enemyStats, null, 10)
+const enemy = new Character("Enemy", actions, enemyStats, null, 10)
 
 const scene = new Scene([player], [enemy])
 
-player.setTarget(enemy)
 
-function doAction(scene, action, self) {
-    if (scene.inits[self] >= action.cost && eval(action.condition)) {
-        console.log("action done");
-        scene.inits[self] -= action.cost
-        eval(action.effect)
+function getPossibleActions(scene, self) {
+    const scope = {}
+    return Object.values(self.actions).filter((v, i, a) => eval(v.condition))
+}
 
+function doAction(scene, self, action) {
+    const scope = {}
+    if (eval(action.condition)) {
+        scene.inits[self] -= eval(action.cost)
+        for (const effect of action.effects) {
+            eval(effect)
+        }
     }
     else {
-        console.log("action not done");
+        console.log(self.name + " conditions failed on " + action.name)
     }
+    console.log("")
 }
 
 log(scene)
+// log(getPossibleActions(scene, player))
 
-doAction(scene, player.actions.gain_initiative, player)
-log(scene.inits)
+doAction(scene, player, player.actions.gain_initiative)
+// log(getPossibleActions(scene, player))
 
-doAction(scene, player.actions.melee_attack, player)
-log(scene.inits)
-log(enemy.health)
+player.setTarget(enemy)
 
-doAction(scene, player.actions.melee_attack, player)
-log(scene.inits)
-log(enemy.health)
+enemy.setTarget(player)
+doAction(scene, enemy, enemy.actions.hug)
 
-doAction(scene, player.actions.melee_attack, player)
-log(scene.inits)
-log(enemy.health)
+doAction(scene, player, player.actions.melee_attack)
+
+doAction(scene, player, player.actions.melee_attack)
+
+doAction(scene, player, player.actions.melee_attack)
+

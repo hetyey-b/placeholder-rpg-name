@@ -1,16 +1,36 @@
 {
     "gain_initiative": {
         "name": "gain_initiative",
-        "pre": "true",
         "cost": "0",
         "condition": "scene.inits[self] <= 0",
-        "effect": "scene.inits[self] = D('1d8') + 4"
+        "effects": [
+            "console.log(self.name + ' does ' + action.name)",
+            "scene.inits[self] = D('1d4') + 4",
+            "console.log(self.name + ' has ' + scene.inits[self] + ' APs')"
+        ]
     },
     "melee_attack": {
         "name": "melee_attack",
-        "pre": "scene.inits[self] > 0",
         "cost": "1",
+        "condition": "scene.inits[self] > 0 && self.target !== undefined",
+        "effects": [
+            "console.log(self.name + ' does ' + action.name + ' to ' + self.target?.name)",
+            "scope['damage'] = -(D(self.weapon?.dice) + self.weapon?.mod + self.stats.str)",
+            "console.log('Damange to ' + self.target?.name + ' from ' + self.name + ': ' + (-scope['damage']))",
+            "console.log(self.target?.name + ' health remaining: ' + self.target?.health)",
+            "console.log(self.name + ' AP remaining: ' + scene.inits[self])",
+            "self.target?.changeHealth(scope['damage'])"
+        ]
+    },
+    "hug": {
+        "name": "hug",
+        "cost": "0",
         "condition": "true",
-        "effect": "self.target?.changeHealth(-(D(self.weapon?.dice) + self.weapon?.mod + self.stats.str))"
+        "effects": [
+            "console.log(self.name + ' made ' + self.target?.name + ' happy with a warm hug!')",
+            "scope['heal'] = D('1d4')",
+            "self.target?.changeHealth(scope['heal'])",
+            "console.log(self.target?.name + ' health increased to ' + self.target?.health)"
+        ]
     }
 }

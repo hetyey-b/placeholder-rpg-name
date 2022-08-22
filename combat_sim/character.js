@@ -1,5 +1,6 @@
 class Character {
-    constructor(actions, stats, weapon, health) {
+    constructor(name, actions, stats, weapon, health) {
+        this.name = name
         this.actions = actions
         this.stats = stats
         this.weapon = weapon
