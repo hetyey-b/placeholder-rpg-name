@@ -1,4 +1,4 @@
-# Basic Combat Rules
+# Combat Rules
 
 ## Combat design philosophy basics
 * We use grid based combat, where one tile represents a 1,5m x 1,5m square.

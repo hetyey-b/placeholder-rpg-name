@@ -1,4 +1,4 @@
-# Basic Spellcasting Rules
+# Spellcasting Rules
 
 ## Components
 * Spells use different components, that are added to the spell from the environment, or from materials by the spell caster
